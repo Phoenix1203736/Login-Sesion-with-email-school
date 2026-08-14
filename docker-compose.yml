@@ -19,13 +19,13 @@ services:
       - backend
 
   db:
-    image: mariadb:11
+    image: mariadb:12.3
     mem_limit: 512m
     environment:
       MYSQL_ROOT_PASSWORD: test01
       MYSQL_DATABASE: loginEmailSession
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     healthcheck:
       test: ["CMD-SHELL", "mariadb-admin ping -u root -ptest01 || exit 1"]
       interval: 10s
@@ -49,4 +49,4 @@ services:
       - ./Backend/src:/app/src
 
 volumes:
-  mysql_data:
+  mariadb:
